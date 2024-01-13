@@ -3,6 +3,7 @@ import { PointsToWinSelect } from "./selectors/pointstowin/pointstowin.component
 
 export function Settings() {
   const container = document.createElement("div");
+  container.classList.add('settings');
   const pointstowinSelector = PointsToWinSelect();
   const gridsizeSelector = GridSizeSelect();
   container.append(pointstowinSelector);

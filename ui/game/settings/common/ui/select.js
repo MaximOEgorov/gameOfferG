@@ -1,4 +1,11 @@
-export function renderSelect(elements, defaultValue) {
+export function renderSelect(elements, defaultValue, selectName='') {
+  const div = document.createElement("div");
+  div.classList.add('subsettings');
+
+  const pElement = document.createElement('p');
+  pElement.append(selectName);
+  div.appendChild(pElement);
+
   const select = document.createElement("select");
 
   elements.forEach((element, index) => {
@@ -10,5 +17,7 @@ export function renderSelect(elements, defaultValue) {
       select.selectedIndex = index;
     }
   });
-  return select;
+
+  div.appendChild(select)
+  return [div, select];
 }

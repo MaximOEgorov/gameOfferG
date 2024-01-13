@@ -4,6 +4,8 @@ import { Grid } from "./grid/grid.component.js";
 
 export function Game() {
   const containerElement = document.createElement("div");
+  containerElement.classList.add('main__div');
+
 
   const settingsElement = Settings();
   containerElement.append(settingsElement);

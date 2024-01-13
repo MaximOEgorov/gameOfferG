@@ -4,6 +4,14 @@ export const OFFER_STATUSES = {
   caught: "caught",
 };
 
+export const MOVE_DIRECTIONS = {
+  up: 'UP',
+  down: 'DOWN',
+  right: 'RIGHT',
+  left: 'LEFT'
+}
+
+
 export const _data = {
   // array for cells: cell = {x,y}
   settings: {
@@ -12,7 +20,7 @@ export const _data = {
     pointsToWin: 10,
     maximumMisses: 3,
     decreaseDeltaInMs: 100,
-    isMuted: true,
+    isMuted: false,
   },
   offerStatus: OFFER_STATUSES.default,
   coords: {
@@ -30,6 +38,8 @@ export const _data = {
       current: {
         x: 2,
         y: 2,
+        direction: MOVE_DIRECTIONS.down,
+        previousDirection: MOVE_DIRECTIONS.up
       },
     },
   },
@@ -116,25 +126,39 @@ export function subscribe(newSubscriber) {
   _subscribers.push(newSubscriber);
 }
 
-export function movePlayer1Up() {
-  _data.coords.player1.current.y -= 1;
+function _afterMove(direction) {
+  _data.coords.player1.current.previousDirection = _data.coords.player1.current.direction;
+  _data.coords.player1.current.direction = direction;
   checkCatching();
   _notify();
+}
+export function movePlayer1Up() {
+  if (_data.coords.player1.current.y === 1){
+    _data.coords.player1.current.y = _data.settings.rowsCount+1;
+  }
+  _data.coords.player1.current.y -= 1;
+  _afterMove(MOVE_DIRECTIONS.up)
 }
 export function movePlayer1Down() {
+  if (_data.coords.player1.current.y === _data.settings.rowsCount){
+    _data.coords.player1.current.y = 0;
+  }
   _data.coords.player1.current.y += 1;
-  checkCatching();
-  _notify();
+  _afterMove(MOVE_DIRECTIONS.down)
 }
 export function movePlayer1Left() {
-  _data.coords.player1.current.x = _data.coords.player1.current.x - 1;
-  checkCatching();
-  _notify();
+  if (_data.coords.player1.current.x === 1){
+    _data.coords.player1.current.x = _data.settings.columnsCount+1;
+  }
+  _data.coords.player1.current.x -= 1;
+  _afterMove(MOVE_DIRECTIONS.left)
 }
 export function movePlayer1Right() {
-  _data.coords.player1.current.x = _data.coords.player1.current.x + 1;
-  checkCatching();
-  _notify();
+  if (_data.coords.player1.current.x === _data.settings.columnsCount){
+    _data.coords.player1.current.x = 0;
+  }
+  _data.coords.player1.current.x += 1;
+  _afterMove(MOVE_DIRECTIONS.right)
 }
 
 function checkCatching() {
@@ -177,3 +201,4 @@ export function selectPlayer1Coords() {
 // чистая архитектура
 // архитектура портов и адаптеров
 // Мартин Фаулер, Рефакторинг
+window.data = _data

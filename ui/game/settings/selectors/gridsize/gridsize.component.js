@@ -15,12 +15,13 @@ export function GridSizeSelect() {
       el.data.y === data.settings.rowsCount
     );
   });
-  const select = renderSelect(dataSelect, defaultValue);
+  const [wrapper, select] = renderSelect(dataSelect, defaultValue, 'Grid size');
 
   select.addEventListener("change", () => {
     const objValue = JSON.parse(select.value);
     data.settings.columnsCount = objValue.x;
     data.settings.rowsCount = objValue.y;
+    select.blur();
   });
-  return select;
+  return wrapper;
 }

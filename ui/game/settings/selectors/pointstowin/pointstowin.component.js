@@ -6,13 +6,11 @@ export function PointsToWinSelect() {
     { data: 30, name: 30 },
     { data: 40, name: 40 },
   ];
-  const select = renderSelect(dataSelect);
-  /*  select.onchange = () => {
-    console.log("hello");
-    console.log(select.value);
-  }; */
+
+  const [wrapper, select] = renderSelect(dataSelect, null,'Points to Win');
+
   select.addEventListener("change", () => {
-    console.log(select.value);
+    select.blur();
   });
-  return select;
+  return wrapper;
 }

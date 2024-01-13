@@ -7,11 +7,25 @@ export function Scores() {
     })
 
     const containerElement = document.createElement('div');
-    update(containerElement);
-
+    containerElement.classList.add('score')
+    const scoreElement = document.createElement('p');
+    update(scoreElement);
+    containerElement.append(scoreElement);
     return containerElement;
 }
 
 function update(containerElement) {
-    containerElement.append('catch: ' + _data.score.caughtCount + '; miss: ' + _data.score.missCount);
+    containerElement.innerHTML = '';
+    let spanEl = document.createElement('span');
+    spanEl.append('Catch:');
+    containerElement.append(spanEl);
+    spanEl = document.createElement('span');
+    spanEl.append(data.score.caughtCount)
+    containerElement.append(spanEl);
+    spanEl = document.createElement('span');
+    spanEl.append('Miss:');
+    containerElement.append(spanEl);
+    spanEl = document.createElement('span');
+    spanEl.append(data.score.missCount);
+    containerElement.append(spanEl);
 }

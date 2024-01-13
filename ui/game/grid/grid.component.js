@@ -23,27 +23,15 @@ export function Grid() {
 
     switch (e.code) {
       case "ArrowUp":
-        if (y <= 1) {
-          break;
-        }
         movePlayer1Up();
         break;
       case "ArrowDown":
-        if (y >= rowsCount) {
-          break;
-        }
         movePlayer1Down();
         break;
       case "ArrowRight":
-        console.log(x);
-        if (x >= columnsCount) {
-          break;
-        }
         movePlayer1Right();
         break;
       case "ArrowLeft":
-        console.log(x);
-
         movePlayer1Left();
         break;
     }
