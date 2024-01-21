@@ -196,6 +196,10 @@ export function selectPlayer1Coords() {
   return _data.coords.player1.current;
 }
 
+export function selectMuteMode() {
+  return _data.settings.isMuted;
+}
+
 // ui - bll - dal
 // solid, grasp, ddd
 // чистая архитектура

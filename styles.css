@@ -107,6 +107,7 @@ td {
 
 td img {
     background: #4580C4;
+    position: absolute;
     display: block;
     margin: 6px auto;
     max-width: 100%;
