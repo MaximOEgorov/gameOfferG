@@ -5,7 +5,7 @@ import {
   selectCurrentOfferCoords,
   selectOfferStatus,
   selectPreviousOfferCoords,
-  selectPlayer1Coords,
+  selectPlayer1Coords, _data, selectIncorrectMove,
 } from "../../../../data/game.data.js";
 import { Image } from "../../../../ui-kit/ui-kit.js";
 
@@ -52,6 +52,9 @@ function update(x, y, cellEl) {
 
   if (isPlayer1InsideCell) {
     const player1El = Image("assets/images/player1.png");
+    if (selectIncorrectMove()) {
+      player1El.classList.add('incorrect__move');
+    }
     cellEl.append(player1El);
   }
 }

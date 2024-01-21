@@ -121,3 +121,20 @@ td img {
 .display__none {
     display: none;
 }
+
+.incorrect__move {
+    transform-origin: center;
+    animation: rocking .2s ease-in-out infinite;
+}
+
+@keyframes rocking {
+    0% {
+        transform: rotate(-10deg);
+    }
+    50% {
+        transform: rotate(10deg);
+    }
+    100% {
+        transform: rotate(-10deg);
+    }
+}
